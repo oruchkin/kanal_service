@@ -13,6 +13,10 @@
 
 ~ docker exec -it infra_backend_1 python manage.py migrate
 
+далее собираем статику для .css
+
+~ docker exec -it infra_backend_1 python manage.py collectstatic
+
 далее создаем админа для (настройки уведомлений через телеграм)
 
 ~ docker exec -it infra_backend_1 python manage.py createsuperuser
