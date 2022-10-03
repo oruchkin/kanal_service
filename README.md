@@ -3,6 +3,10 @@
 Есть видео инструкция:
 https://www.loom.com/share/656886af11ef4ce5bd40b1e55cb24642
 
+---
+google sheet:
+https://docs.google.com/spreadsheets/d/1d2v2X1h3sU7N6sNnDiJyW0FpDkmmcxfxZWZlNj_6xVs/edit#gid=0
+---
 
 Как запустить:
 
