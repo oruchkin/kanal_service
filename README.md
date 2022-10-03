@@ -5,13 +5,13 @@
 **через Docker-compose:**
 в папке infra выполнить комманду:
 
-**~ docker-compose up**
+** docker-compose up**
 
 проект соберется и запустится по адресу http://127.0.0.1
 
 далее нужно сделать миграции для базы данных, выполняем комманду в другом терминале
 
-**~ docker exec -it infra_backend_1 python manage.py migrate**
+** docker exec -it infra_backend_1 python manage.py migrate**
 
 далее создаем админа для (настройки уведомлений через телеграм)
 
