@@ -49,11 +49,20 @@
                     <a href=" {% url 'data_recieving' %} ">получить информацию с google sheet</a>
                     <p>Курс доллара: <b> {{rub}} </b></p>
                     <br><br>
+                    <p>Чтобы получать уведомления на телеграм нужно сходить в этого <a target="blank" href="https://t.me/userinfobot">https://t.me/userinfobot</a> бота </p> 
+                    <p>Нажать /start он вернет Вам ваш id, например мой "id:299470913"</p>
+                    <p>Этот id нужно ввести в админке >> <a target="blank" href="/admin">Админка</a></p>
+                    <p>если используется базу данных sqlite3 то доступ: user: "admin", password: "admin", если postgres то админа нужно создать (инструкция в readme.md)</p>
+                    <p>Так же нужно нажать /start в бота который будет делать рассылку <a target="blank" href="https://t.me/oruchkin3_bot">https://t.me/oruchkin3_bot</a></p>
+                    <p>id который вы получили в первом боте нужно в админке, зайти в раздел "Telegram_notifications" >> ADD TELEGRAM_NOTIFICATION</p>
+                    <p>Здесь в полях name добавить свое имя, в поле chat id добавить id который вам выдал бот >> нажать SAVE</p>
+                    <p>Успех - теперь вы админ и будете получать уведомления</p>
+                    <p>нажмите на ссылку <a href="/data_recieving">"получить информацию с google sheet"</a> и скрипт запустится, который в том числе рассылает уведомления</p>
+
                 </div>
                 <div class="grid_kanal_body_table">
                     <br>
                     <div style="display: flex; align-items: center; background-color:;" class="total_sum">
-                        
                         <div style="width:50%; margin:auto; background-color:black;display: flex; align-items: center;">
                             <p style="margin:auto;color:white;font-size:40px;">Total $</p>
                         </div>
