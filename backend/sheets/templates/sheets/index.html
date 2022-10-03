@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+
+    <title>Канал Сервис</title>
+
+    <style>
+        .grid_kanal{
+            display:grid;
+            grid-template-rows: auto auto;
+        }
+
+        .grid_kanal_header{
+            grid-row: 1;
+            background-color:lightgreen;
+            border: 1px solid black;
+        }
+
+        .grid_kanal_body{
+            grid-row: 2;
+            display:grid;
+            grid-template-columns: 1fr 1fr;
+        }
+
+    </style>
+
+</head>
+<body>
+    
+    <div class="container">
+        <div class="grid_kanal">
+
+            <div class="grid_kanal_header">
+                <img style="margin:35px;" src="https://kanalservis.ru/wp-content/themes/knal/img/logo.png" alt="kanal">
+            </div>
+
+            <div class="grid_kanal_body">
+
+                <div class="grid_kanal_body_canvas">
+                    <br>
+                    <canvas id="myChart" style="max-width:100%;"></canvas> 
+                    <br><br>
+                    <a href=" {% url 'data_recieving' %} ">получить информацию с google sheet</a>
+                    <p>Курс доллара: <b> {{rub}} </b></p>
+                    <br><br>
+                </div>
+                <div class="grid_kanal_body_table">
+                    <br>
+                    <div style="display: flex; align-items: center; background-color:;" class="total_sum">
+                        
+                        <div style="width:50%; margin:auto; background-color:black;display: flex; align-items: center;">
+                            <p style="margin:auto;color:white;font-size:40px;">Total $</p>
+                        </div>
+                    </div>
+                    <div style="display: flex; align-items: center; background-color:;" class="total_sum">
+                        
+                        <div style="width:50%; margin:auto; display: flex;border: 1px solid black; align-items: center;">
+                            <p style="margin:auto;font-size:50px;">{{total_sum}}</p>
+                        </div>
+                    </div>
+                    <br>
+                    
+                    <table class="table table-hover table-bordered  border-dark">
+                        <thead class="table-dark border-dark">
+                            <tr class="border-dark">
+                                <th scope="col">№</th>
+                                <th scope="col">Заказ №</th>
+                                <th scope="col">Стоимость$</th>
+                                <th scope="col">Срок поставки</th>
+                                <th scope="col">Стоимость RUB</th>
+                            </tr>
+                        </thead>
+                        <tbody class="table-group-divider">
+                            {% for order in all_orders %}
+                            <tr class="table-primary">
+                                <th scope="row">{{order.number}}</th>
+                                <td>{{order.order_number}}</td>
+                                <td>{{order.price_usd}}</td>
+                                <td>{{order.delivery_time|date:"d.m.Y"}}</td>
+                                <td>{{order.price_rub}}</td>                                         
+                                </tr>
+                            <tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+<script>
+    var xValues = {{x_values}};
+    var yValues = {{y_values}};
+    new Chart("myChart", {
+    type: "line",
+    data: {
+        labels: xValues,
+        datasets: [{
+        fill: false,
+        lineTension: 0,
+        backgroundColor: "rgba(0,0,255,1.0)",
+        borderColor: "rgba(0,0,255,0.1)",
+        data: yValues
+        }]
+    },
+    options: {
+        legend: {display: false},
+        scales: {
+        yAxes: [{ticks: {min: 6, max:{{max_usd_value}}}}],
+        }
+    }
+    });
+</script>
+
+</body>
+</html>
