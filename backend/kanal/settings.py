@@ -1,3 +1,4 @@
+import os
 from split_settings.tools import include
 from pathlib import Path
 from dotenv import load_dotenv
@@ -13,6 +14,7 @@ include(
 
 DEBUG = True
 ALLOWED_HOSTS = ["*"]
+CSRF_TRUSTED_ORIGINS=[f'http://127.0.0.1']
 
 SECRET_KEY = 'django-insecure-(gy%az5f)!x4%@h&u4#8)+2tujn@%5&1n(kj_yh^xb@si664)n'
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -26,4 +28,5 @@ USE_L10N = True
 USE_TZ = True
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
